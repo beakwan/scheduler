@@ -25,7 +25,6 @@ const days = [
 
 export default function Application(props) {
   
-  //Use state to set day
   const [day, setDay] = useState("Monday");
 
 
