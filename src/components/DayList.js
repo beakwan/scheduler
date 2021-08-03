@@ -8,10 +8,11 @@ export default function DayList(props) {
 
   const parsedDays = days.map(day => {
    return <DayListItem 
-  name={day.name} 
-  spots={day.spots} 
-  selected={day.name === props.day}
-  setDay={props.setDay}  />
+   key={day.id}
+    name={day.name} 
+    spots={day.spots} 
+    selected={day.name === props.day}
+    setDay={props.setDay}  />
   });
 
   return (
