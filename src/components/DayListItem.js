@@ -14,7 +14,7 @@ export default function DayListItem(props) {
     let number;
     let noun;
 
-    spots === 0 ? number = "no" : number = `${spots}`;
+    spots === 0 ? number = "no" : number = spots;
     spots === 1 ? noun = "spot" : noun = "spots";
 
     return `${number} ${noun}`;
