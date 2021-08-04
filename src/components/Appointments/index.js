@@ -7,7 +7,7 @@ import Show from "components/Appointments/Show";
 
 import "components/Appointments/styles.scss";
 
-export default function Appointments(props) {
+export default function Appointment(props) {
   const {time, interview} = props;
 
   return (
