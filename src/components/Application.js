@@ -38,7 +38,13 @@ export default function Application(props) {
   //map over data to compile dynamic appointments list
   const parsedAppointments = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview)
-    return <Appointment key={appointment.id} interview={interview} {...appointment} />});
+    return <Appointment
+    key={appointment.id}
+    id={appointment.id}
+    time={appointment.time}
+    interview={interview}
+    />
+});
 
 
   return (
