@@ -17,6 +17,7 @@ export default function Appointment(props) {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -40,7 +41,11 @@ export default function Appointment(props) {
 
   function cancel() {
 
+    transition(DELETING, true);
+
     cancelInterview(id)
+    .then(res => transition(EMPTY))
+    .catch(err => console.log(err.message))
     
   }
 
@@ -64,6 +69,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && <Status message={"Saving"} />}
+      {mode === DELETING && <Status message={"Deleting"} />}
     </article>
   );
 }
