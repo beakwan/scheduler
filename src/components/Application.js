@@ -39,21 +39,25 @@ export default function Application(props) {
   //Function to book interviews
   function bookInterview(id, interview) {
 
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-   
-    setState({
-      ...state,
-      appointments
+    return axios.put(`/api/appointments/${id}`, {interview: {...interview}})
+    .then((res) => {
+       const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+  
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+     
+      setState({
+        ...state,
+        appointments: appointments
+      })
     })
-    console.log(id, interview);
+    .catch(err => console.log(err.message))
+
   }
 
   //map over data to compile dynamic appointments list

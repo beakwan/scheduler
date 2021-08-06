@@ -28,7 +28,8 @@ export default function Appointment(props) {
     };
 
     bookInterview(id, interview)
-    transition(SHOW);
+    .then(res => transition(SHOW))
+    .catch(err => console.log(err.message))
     
   }
 
