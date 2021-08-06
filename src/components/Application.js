@@ -36,11 +36,11 @@ export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
-  //Function to book interviews
+  //Function to book interviews 
   function bookInterview(id, interview) {
 
     return axios.put(`/api/appointments/${id}`, {interview: {...interview}})
-    .then((res) => {
+    .then(res => {
        const appointment = {
         ...state.appointments[id],
         interview: { ...interview }
@@ -60,6 +60,13 @@ export default function Application(props) {
 
   }
 
+  //Function to cancel interviews
+  function cancelInterview(id) {
+    console.log("in cancel interview")
+    
+    
+  }
+
   //map over data to compile dynamic appointments list
   const parsedAppointments = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview)
@@ -70,6 +77,7 @@ export default function Application(props) {
     interview={interview}
     interviewers={dailyInterviewers}
     bookInterview={bookInterview}
+    cancelInterview={cancelInterview}
     />
 });
 

@@ -11,7 +11,7 @@ import useVisualMode from "hooks/useVisualMode";
 import "components/Appointments/styles.scss";
 
 export default function Appointment(props) {
-  const {time, interview, interviewers, bookInterview, id} = props;
+  const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -29,7 +29,7 @@ export default function Appointment(props) {
       interviewer
     };
 
-    transition(SAVING);
+    transition(SAVING, true);
 
     bookInterview(id, interview)
     .then(res => transition(SHOW))
@@ -37,6 +37,12 @@ export default function Appointment(props) {
     
   }
 
+
+  function cancel() {
+
+    cancelInterview(id)
+    
+  }
 
   return (
     <article className="appointment">
@@ -46,6 +52,7 @@ export default function Appointment(props) {
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
+          onDelete={cancel}
         />
       )}
       {mode === CREATE && (
