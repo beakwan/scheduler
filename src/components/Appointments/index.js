@@ -10,7 +10,7 @@ import useVisualMode from "hooks/useVisualMode";
 import "components/Appointments/styles.scss";
 
 export default function Appointment(props) {
-  const {time, interview, interviewers} = props;
+  const {time, interview, interviewers, bookInterview, id} = props;
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -19,6 +19,19 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
+
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    bookInterview(id, interview)
+    transition(SHOW);
+    
+  }
+
 
   return (
     <article className="appointment">
@@ -35,6 +48,7 @@ export default function Appointment(props) {
           {...interview}
           interviewers ={interviewers}
           onCancel={() => back()}
+          onSave={save}
         />
       )}
     </article>
