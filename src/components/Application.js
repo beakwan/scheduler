@@ -56,9 +56,9 @@ export default function Application(props) {
         appointments: appointments
       })
     })
-    .catch(err => console.log(err.message))
-
+    
   }
+  
 
   //Function to cancel interviews
   function cancelInterview(id) {
