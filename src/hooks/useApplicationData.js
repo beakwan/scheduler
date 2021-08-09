@@ -25,6 +25,26 @@ export default function useApplicationData() {
     }).catch(error => console.log(error))
   }, [])
   
+
+  //Function to update spots 
+  function updateSpots(state) {
+    const currentDay = state.day;
+    const currentDayObj = state.days.find(day => day.name === currentDay);
+    const currentDayObjIndex = state.days.findIndex(day => day.name === currentDay);
+
+    const appointmentIds = currentDayObj.appointments;
+    const freeAppointments = appointmentIds.filter(id => !state.appointments[id].interview);
+
+    const updatedSpots = freeAppointments.length;
+
+    const updatedState = {...state};
+    updatedState.days = [...state.days];
+    const updatedDay = {...currentDayObj};
+    updatedDay.spots = updatedSpots;
+    updatedState.days[currentDayObjIndex] = updatedDay;
+
+    return updatedState;
+  }
   
    //Function to book interviews 
    function bookInterview(id, interview) {
@@ -41,10 +61,10 @@ export default function useApplicationData() {
         [id]: appointment
       };
      
-      setState({
+      setState(updateSpots({
         ...state,
         appointments: appointments
-      })
+      }))
     })
     
   }
@@ -66,10 +86,10 @@ export default function useApplicationData() {
         [id]: appointment
       };
      
-      setState({
+      setState(updateSpots({
         ...state,
         appointments: appointments
-      })
+      }))
     })
     
   }
