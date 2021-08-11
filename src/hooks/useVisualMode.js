@@ -6,9 +6,9 @@ export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 
   const newHistory = [...history];
-
+  //Function to transition to a new appointments mode
   const transition = (newMode, replace = false) => {
-
+    //If we don't want to add previous mode to history, replace
     if (replace) {
      newHistory.pop();
     }
@@ -17,7 +17,7 @@ export default function useVisualMode(initial) {
     setMode(newMode);
     
   }
-  
+  //Function to go back to the previous mode
   const back = () => {
     if (newHistory.length > 1) {
      newHistory.pop();

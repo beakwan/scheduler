@@ -28,13 +28,14 @@ export default function useApplicationData() {
 
   //Function to update spots 
   function updateSpots(state) {
+    //Find wanted day and index
     const currentDay = state.day;
     const currentDayObj = state.days.find(day => day.name === currentDay);
     const currentDayObjIndex = state.days.findIndex(day => day.name === currentDay);
-
+    //get appt ids and find null appts
     const appointmentIds = currentDayObj.appointments;
     const freeAppointments = appointmentIds.filter(id => !state.appointments[id].interview);
-
+    //null appts array length 
     const updatedSpots = freeAppointments.length;
 
     const updatedState = {...state};

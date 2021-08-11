@@ -1,13 +1,21 @@
+//PROPS
+//name: string
+//spots: number
+//selected: boolean
+//setDay: function
+
 import React from "react";
 import classNames from "classnames";
 
 import "components/DayListItem.scss";
 
 export default function DayListItem(props) {
+  const { selected, spots, setDay, name } = props;
+
   const dayClass = classNames({
     "day-list__item": true,
-    "day-list__item--selected": props.selected,
-    "day-list__item--full": props.spots === 0
+    "day-list__item--selected": selected,
+    "day-list__item--full": spots === 0
   })
 
   //Function to render correct message depending on props.spots
@@ -22,9 +30,9 @@ export default function DayListItem(props) {
   }
 
   return (
-    <li data-testid="day" className={dayClass} onClick={() => props.setDay(props.name)} >
-      <h2 className="text--regular">{props.name}</h2>
-      <h3 className="text--light">{formatSpots(props.spots)} remaining</h3>
+    <li data-testid="day" className={dayClass} onClick={() => setDay(name)} >
+      <h2 className="text--regular">{name}</h2>
+      <h3 className="text--light">{formatSpots(spots)} remaining</h3>
     </li>
   );
 }

@@ -1,5 +1,5 @@
-// PROPS 
-// time: string 
+// PROPS
+// time: string
 
 import React from "react";
 

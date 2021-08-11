@@ -1,3 +1,5 @@
+//Helper functions to parse through data for given state
+
 export function getAppointmentsForDay(state, day) {
   const appointments = [];
 
