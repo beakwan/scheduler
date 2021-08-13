@@ -29,10 +29,14 @@ export default function Form(props) {
     onCancel();
   };
 
-  //Function to check that name input is not blank
+  //Function to check that name input is not blank and interviewer has been chosen
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewer === null) {
+      setError("Please select an interviewer");
       return;
     }
     setError("");
